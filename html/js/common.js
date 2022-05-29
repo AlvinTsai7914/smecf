@@ -117,9 +117,9 @@ $(function() {
         $(this).toggleClass("-open")
     })
 
-    // 點擊遮罩關閉sub_nav
-    $(".overlay").on("click", throttle(closeNav))
-    // 瀏覽器視窗變動時關閉sub_nav
-    $(window).resize(throttle(closeNav))
+    // // 點擊遮罩關閉sub_nav
+    // $(".overlay").on("click", throttle(closeNav))
+    // // 瀏覽器視窗變動時關閉sub_nav
+    // $(window).resize(throttle(closeNav))
 
 })
