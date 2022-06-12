@@ -5,11 +5,14 @@
   
   ---------------*/
 
-@mixin size($w, $h:$w) {
-    width: $w;
-    height: $h;
-}
-
+// @mixin size($w, $h: 100px) {
+//     width: $w;
+//     height: $h;
+// };
+// @mixin size($num1: 150px, $num2: 150px) {
+//   width: $num1;
+//   height: $num2;
+// }
 @mixin dflexCenter {
     display: flex;
     align-items: center;
@@ -156,13 +159,6 @@
     border-radius: $size/2;
   }
 }
-
-//長寬
-@mixin size($w, $h) {
-  width: $w;
-  height: $h;
-}
-
 
 //radio button隱藏樣式
 %radio-btn-hide {
@@ -347,7 +343,7 @@
 }
 
 @mixin defaultListsStyle {
-  font-size: 16px;
+  font-size: 1rem;
   color: $main-dark;
   padding-left: 10px;
   position: relative;

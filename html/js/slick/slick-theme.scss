@@ -43,7 +43,7 @@ $slick-opacity-not-active: 0.25 !default;
 
 .slick-list {
     .slick-loading & {
-        // background: #fff slick-image-url("ajax-loader.gif") center center no-repeat;
+        background: #fff slick-image-url("ajax-loader.gif") center center no-repeat;
     }
 }
 
@@ -67,7 +67,7 @@ $slick-opacity-not-active: 0.25 !default;
     height: 20px;
     width: 20px;
     line-height: 0px;
-    @include font-size(0px);
+    font-size: 0px;
     cursor: pointer;
     background: transparent;
     color: transparent;
@@ -91,7 +91,7 @@ $slick-opacity-not-active: 0.25 !default;
     }
     &:before {
         font-family: $slick-font-family;
-        @include font-size(20px);
+        font-size: 20px;
         line-height: 1;
         color: $slick-arrow-color;
         opacity: $slick-opacity-default;
@@ -159,7 +159,7 @@ $slick-opacity-not-active: 0.25 !default;
             width: 20px;
             outline: none;
             line-height: 0px;
-            @include font-size(0px);
+            font-size: 0px;
             color: transparent;
             padding: 5px;
             cursor: pointer;

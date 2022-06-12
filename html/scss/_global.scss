@@ -12,13 +12,13 @@ html * {
 body {
   font-family: $font-family-sans-serif;
   // overflow-x: hidden;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.8;
   position: relative;
 
 
   @include media-breakpoint-down(xl) {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   &.fixed {

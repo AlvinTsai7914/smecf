@@ -1,6 +1,6 @@
 // bootstrap 變數
 // @import './variable';: #00d3be!default;
-$primary: #FF8A00!default; 
+$primary: rgb(255, 138, 0)!default; 
 $secondary: #45C7BF !default;
 $success: #94D8A4 !default;
 $info: #369bfd !default;
@@ -17,16 +17,26 @@ $font-family-sans-serif:'Roboto', 'Noto Sans TC', sans-serif, Arial, "微軟正�
 
 // 蓋掉bootstrap應影
 $box-shadow:  0px 0px 5px 3px rgba(0, 0, 0, 0.1);
+$box-shadow-secondary: 0px 10px 12px 0 rgba(0, 0, 0, 0.15);
+$tag-shadow: 4px 4px 0 0 rgba(152, 152, 152, .3);
+$tag-shadow-left: -4px 4px 0 0 rgba(152, 152, 152, .3);
 
-$main-gray: #2e2e2e !default;
-$light-gray: #E6E6E6!default;
-$gray: #CCCCCC !default;
-
+// 客製化顏色
 $main-dark: #1A1A1A;
+$main-gray: #808080 !default;
+$gray: #CCCCCC !default;
+$light-gray: #EFEFEF!default;
+$light-gray-secondary: rgba(230, 230, 230, .4)!default;
+$light-yellow: rgba(255, 255, 107, 0.2);
+$light-green: #ECF9F9;
+$lake-green: #45C7BF;
+$lake-green-dark: #18ACC4;
+$yellow: #FABA14;
 
 /* 主色應用 */
 $primary-color-light: rgba(248, 245, 241, 1) !default;
-$primary-color-30: rgba(158, 129, 34, 0.3) !default;
+$primary-color-30: rgba(255, 138, 0, 0.3) !default;
+$primary-color-20: rgba(255, 138, 0, 0.2) !default;
 
 /* 輔色應用 */
 $secondary-color-light: rgb(185, 59, 179, 1) !important;

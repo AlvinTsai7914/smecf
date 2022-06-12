@@ -6,10 +6,36 @@
 //     $result: $n * 165;
 //     @return $result
 // };
+@mixin animateTwinkle($d) {
+    animation-name: twinkle;
+    animation-duration: $d;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;  
+}
+
+@mixin animateFloating() {
+    animation-name: floating;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;  
+}
+a.font-size-0 {
+    font-size: 0rem !important;
+}
+.wrapper.fortieth {
+    background: #232227;
+}
 main.fortieth {
-    background: top/100% no-repeat url(../img/40th/bg_top.png);
+    background: top/100% 65% no-repeat url(../img/40th/bg_top.png);
     min-height: 100vh;
     overflow-x: hidden;
+    &::before {
+        content: "";
+        width: 100%;
+    }
+    @include media-breakpoint-down(md) {
+        background: top/100% 38% no-repeat url(../img/40th/bg_top_m.png);
+    }
     h1,h2 {
         @include font-size(46px);
         background: $gold-gradient;
@@ -92,6 +118,24 @@ main.fortieth {
     .simplebar-scrollbar.simplebar-visible::before {
         opacity: 1;
     }
+    @include media-breakpoint-down(xl) {
+        h1 {
+            @include font-size(36px);
+        }
+        h2{
+            &.under_line {
+                @include font-size(32px);
+                letter-spacing: 1px;
+                &::before {
+                    @include size(100%, 1px);
+                }
+            }
+            &.en {
+                @include font-size(18px);
+            }
+            
+        }
+    }
     @include media-breakpoint-down(md) {
         h1 {
             @include font-size(28px);
@@ -101,7 +145,8 @@ main.fortieth {
         }
         h2{
             &.under_line {
-                @include font-size(36px);
+                @include font-size(28px);
+                letter-spacing: 1px;
                 &::before {
                     @include size(90%, 1px);
                 }
@@ -124,7 +169,6 @@ main.fortieth {
             .container {
                 height: calc(100vh - 160px);
             }
-            
             .logo_box {
                 h2, img {
                     display: block;
@@ -141,9 +185,10 @@ main.fortieth {
                 @include size(40px,20px);
                 background: center / contain no-repeat url(../img/40th/scroll_to_next.png);
                 position: absolute;
-                top: 100%;
+                top: 80%;
                 left: 50%;
                 transform: translate(-50%);
+                @include animateFloating();
             }
             &._bottom {
                 height:100vh;
@@ -153,6 +198,14 @@ main.fortieth {
                 }
                 h2.under_line {
                     @include font-size(28px);
+                }
+            }
+            @include media-breakpoint-down(xl) {
+                .logo_box {
+                    img {
+                        width: 250px;
+                    }
+                    
                 }
             }
             @include media-breakpoint-down(md) {
@@ -183,14 +236,15 @@ main.fortieth {
             }
         }
         &.target {
+            padding-bottom: 160px;
             .container {
-                padding-bottom: 100px;
+          
                 max-width: 750px;
                 margin-top: 110px;
             }
         }
         &.video {
-            padding-bottom: 100px;
+            padding-bottom: 160px;
             .video_card {
                 background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
             }
@@ -209,7 +263,7 @@ main.fortieth {
             }
             .video_title {
                 padding-top: 18px;
-                padding-bottom: 68px;
+                padding-bottom: 40px;
                 
                 p{
                     @include font-size(18px);
@@ -224,7 +278,8 @@ main.fortieth {
             }
         }
         &.chronology {
-            padding-bottom: 100px;
+            padding-bottom: 160px;
+            // background: linear-gradient(to bottom, rgba(33, 34, 38, 0.5) 0%, #232227 5%, #232227 100%);
             .nav-pills-wrapper {
                 padding: 12px;
             }
@@ -269,6 +324,7 @@ main.fortieth {
                     word-break: keep-all;
                     white-space: nowrap;
                     position: relative;
+                    vertical-align: middle;
                     .content_box {
                         width: 100%;
                         padding-left: 60px;
@@ -285,12 +341,15 @@ main.fortieth {
                     .event {
                         @include font-size(16px);
                         color: white;
+                        letter-spacing: 0.5px;
+                        line-height: 1.5;
                     }
                     .financing {
                         @include font-size(16px);
                         color: $gold;
+                        letter-spacing: 0.5px;
                         span {
-                            @include font-size(26px);
+                            @include font-size(32px);
                             padding: 0 6px;
                             line-height: 0;
                         }
@@ -307,6 +366,13 @@ main.fortieth {
                         }
                     }
                 }
+            }
+            // simplebar 樣式
+            .simplebar-track.simplebar-horizontal {
+                height: 6px;
+            }
+            .simplebar-scrollbar.simplebar-visible {
+                height: 4px;
             }
             @include media-breakpoint-down(lg) {
                 .nav-pills {
@@ -341,7 +407,7 @@ main.fortieth {
                             transform: translateY(-50%);
                         }
                         .event {
-                            margin-bottom: 4px;
+                            // margin-bottom: 4px;
                         }
                     }
                 }
@@ -364,13 +430,33 @@ main.fortieth {
                         @include size(100px, 32px);
                     }
                 }
+                .tab-content {
+                    li {
+                        .financing {
+                            span {
+                                @include font-size(26px);
+                            }
+                        }
+                    }
+                }
+            }
+            @include media-breakpoint-down(xs) {
+                .tab-content {
+                    li {
+                        .event {
+                            margin-bottom: 8px;
+                        }
+                    }
+                }
             }
         }
         &.financial {
-            padding-bottom: 100px;
+            padding-bottom: 160px;
             .left {
-                height: 700px;
+                height: 730px;
                 margin-left: -200px;
+                position: relative;
+                padding: 0 15px;
                 img {
                     display: block;
                     margin-top: 200px;
@@ -378,6 +464,16 @@ main.fortieth {
                 select {
                     text-align: center;
                     border-radius: 8px;
+                }
+                &::after {
+                    content: "";
+                    @include size(50px, 100%);
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    transform: translateX(100%);
+                    background: linear-gradient(to right, #232227 0%, rgba(0, 0, 0, 0) 100% );
+                    z-index: 10;
                 }
             }
             .right {
@@ -387,7 +483,7 @@ main.fortieth {
                 .scroll_wrapper {
                     // border: 2px solid white;
                     width: 100%;
-                    height: 700px;
+                    height: 730px;
                     position: absolute;
                     left: 0;
                     top: 0;
@@ -395,7 +491,7 @@ main.fortieth {
                     .scroll_content {
                         // border: 2px solid red;
                         width: fit-content;
-                        height: 700px;
+                        height: 730px;
                         position: relative;
                         display: flex;
                         flex-wrap: nowrap;
@@ -423,7 +519,7 @@ main.fortieth {
                                         content: "";
                                         @include size(9px,9px);
                                         position: absolute;
-                                        bottom: -53px;
+                                        bottom: -57px;
                                         left: 50%;
                                         transform: translate( -50%, 0%);
                                         background-color: $gold;
@@ -450,7 +546,7 @@ main.fortieth {
                                         content: "";
                                         @include size(9px,9px);
                                         position: absolute;
-                                        top: -53px;
+                                        top: -57px;
                                         left: 50%;
                                         transform: translate( -50%, 0%);
                                         background-color: $gold;
@@ -491,6 +587,12 @@ main.fortieth {
                         }
                     }
                 }
+            }
+            @include media-max(1500px) {
+                .left {
+                    margin-left: -100px;
+
+                } 
             }
             @include media-breakpoint-down(xl) {
                 .left {
@@ -608,10 +710,12 @@ main.fortieth {
                 @include font-size(26px);
                 color: white;
                 margin-bottom: 24px;
+                letter-spacing: 1px;
             }
             p.card_text {
                 @include font-size(16px);
                 color: white;
+                letter-spacing: 0.4px;
             }
             .company_card {
                 margin-bottom: 120px;
@@ -660,6 +764,87 @@ main.fortieth {
                 }
             }
         }
- 
+        @include media-breakpoint-down(md) {
+            &.logo, &.target, &.video, &.chronology, &.financial {
+                    padding-bottom: 60px;
+       
+            } 
+        }
+    }
+}
+
+.sparkle_box {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    .sparkle {
+        @include size(2px, 4px);
+        border-radius: 50%;
+        background-color: rgb(150, 105, 43);
+        // box-shadow: 0 0 8px 4px rgb(209, 149, 64);
+        &.long {
+            @include animateTwinkle(60s);
+        }
+        &.twenty_sec {
+            @include animateTwinkle(20s);
+        }
+        &.ten_sec {
+            @include animateTwinkle(10s);
+        }
+   
+    }
+    &.position_fixed {
+        position: fixed;
+    }
+}
+
+@keyframes twinkle {
+    5% {
+        box-shadow: 0 0 16px 4px rgb(245, 175, 76);
+        transform: translateY(0);
+        opacity: 0;
+    }
+    5% {
+        box-shadow: 0 0 16px 4px rgb(245, 175, 76);
+        opacity: 1;
+    }
+    10% {
+        box-shadow: 0 0 4px 2px rgb(153, 109, 47);
+    }
+    15% {
+        box-shadow: 0 0 8px 2px rgb(255, 197, 116);
+    }
+    20% {
+        box-shadow: 0 0 6px 2px rgb(212, 149, 60);
+    }
+    30% {
+        box-shadow: 0 0 10px 3px rgb(218, 156, 68);
+    }
+    40% {
+        box-shadow: 0 0 4px 2px rgb(153, 109, 47);
+    }
+    60% {
+        box-shadow: 0 0 8px 2px rgb(218, 156, 68);
+    }
+    70% {
+        box-shadow: 0 0 10px 2px rgba(218, 156, 68, 0.7);
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 0 0 16px 2px rgba(218, 156, 68,1);
+        opacity: 0;
+        transform: translateY(200px);
+    }
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(-10px);
     }
 }

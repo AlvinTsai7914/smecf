@@ -1,6 +1,7 @@
 // 共用 js
 // 節流器
 function throttle(func, timeout = 250) {
+    console.log("throttle")
     let last;
     let timer;
    
@@ -36,20 +37,14 @@ function debounce(func, delay=250) {
     }
 }
 
-
-//header開關
-
-  $(function () {
-    // 輔導諮詢專線開闔
-    $(".contact_trigger").on("click",function() {
-        $(this).parent().toggleClass("-open")
-    })
-    function toggleSubNav() {
+// layout
+$(function () {
+    function openSubNav() {
         $(".burger").toggleClass("-open")
         $(".sub_nav").toggleClass("-open")
         $(".nav_list__item").removeClass("-open")
         $("html").toggleClass("locked")
-        $(".overlay").toggleClass("active")
+        $(".overlay").toggleClass("-open")
         $(".sub_nav.nav_list__title").first().trigger("focus")
         // 英文版漢堡選單
         // $(".sub_nav_en").toggleClass("-open")
@@ -57,45 +52,75 @@ function debounce(func, delay=250) {
     function closeSubNav(e) {
         let subNav = $(".sub_nav")
         if (!subNav.is(e.target) && subNav.has(e.target).length === 0 && !$(".burger").is(e.target)) {
+            console.log("closeSubNav")
             $(".burger").removeClass("-open")
             $(".sub_nav").removeClass("-open")
             $(".nav_list__item").removeClass("-open")
             $("html").removeClass("locked")
-            $(".overlay").removeClass("active")
+            $(".overlay").removeClass("-open")
             // $(".sub_nav_en").removeClass("-open")
         }
-   
+
     }
 
     function closeContact(e) {
-        let contact = $(".contact")
-        let subNav = $(".sub_nav")
-        if (!contact.is(e.target) && contact.has(e.target).length === 0 ) {
+        let contact = $(".contact"),
+            contactLink = $(".contact_link");
+        if (!contact.is(e.target) && contact.has(e.target).length === 0 && !contactLink.is(e.target)) {
             contact.removeClass("-open")
+            contactLink.parent().removeClass("-open")
         }
     }
 
+    // 輔導諮詢專線開闔(桌機)
+    $(".contact_link").on("click",function() {
+        $(this).parent().toggleClass("-open")
+    })
+    // 輔導諮詢專線開闔(移動裝置)
+    $(".contact_trigger").on("click",function() {
+        $(this).parent().toggleClass("-open")
+    })
     function openSearch(e) {
+
         $(".search_input").addClass("-open")
         $(".search_input input").focus()      
-        $(".overlay").addClass("active white")  
+        $(".overlay").addClass("-open white")  
+        $("html").addClass("locked")
     }
     function closeSearch(e) {
-        $(".search_input").removeClass("-open")   
-        $(".overlay").removeClass("active white") 
-        $(".search_link").focus(); 
+        let searchBox =  $(".search_input")
+        if (!searchBox.is(e.target) && searchBox.has(e.target).length === 0) {
+            $(".search_input").removeClass("-open")   
+            $(".overlay").removeClass("-open white") 
+            $("html").removeClass("locked")
+        } else if ($(".close_search").is(e.target) || $(".close_search").has(e.target).length !== 0 ) {
+            $(".search_input").removeClass("-open")   
+            $(".overlay").removeClass("-open white") 
+            $(".search_link").focus(); 
+            $("html").removeClass("locked")
+        }
     }
 
+    //搜尋     
+    $(".search_link").on("click",function() {
+        openSearch()
+    })
 
+    // 漢堡選單
     $(".hamburger").on("click", function(e) {
-        toggleSubNav(e)
+        // openSubNav(e)
+        $(".burger").toggleClass("-open")
+        $(".sub_nav").toggleClass("-open")
+        $("html").toggleClass("locked")
+        $(".overlay").toggleClass("-open")
+        $(".nav_list__item").removeClass("-open")
+        $(".sub_nav.nav_list__title").first().trigger("focus")
+
     })
     
-    $(document).mouseup((e) => {
-        closeContact(e)
-        closeSubNav(e)
+    $(".close_search").on("click", function(e) {
+        closeSearch(e)
     })
-
     $(".contact_trigger").focus(function(e) {    
         closeSubNav(e)
     })
@@ -103,23 +128,24 @@ function debounce(func, delay=250) {
         closeSubNav(e)
     })
 
-    $(".search_link").on("click",function() {
-        openSearch()
-    })
-    $(".close_search").on("click", function(e) {
-        closeSearch(e)
-    })
-
-    
-}) 
-$(function() {
     $(".nav_list__item ").on("click", function() {
         $(this).toggleClass("-open")
     })
 
-    // // 點擊遮罩關閉sub_nav
-    // $(".overlay").on("click", throttle(closeNav))
-    // // 瀏覽器視窗變動時關閉sub_nav
-    // $(window).resize(throttle(closeNav))
+    $(".sitemap_btn").on("click", function(e) {
+        $(".sitemap_wrapper").toggleClass("-close")
+    })
 
+    $(".overlay").on("click", function() {
+        $(".-open").removeClass("-open")
+        $("html").removeClass("locked")
+    })
+
+    $(document).mouseup((e) => {
+        closeContact(e)
+        // closeSubNav(e)
+        // closeSearch(e)
+    })
+
+    $(window).on("scroll", throttle(closeContact, 500))
 })

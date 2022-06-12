@@ -4,7 +4,7 @@ body {
 }
 
 p {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .navbar {
@@ -194,4 +194,3 @@ footer {
 .text-bg-gray .text-purple {
   color: #5C1979;
 }
-/*# sourceMappingURL=page.css.map */
