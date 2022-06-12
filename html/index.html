@@ -1238,11 +1238,63 @@
                 </div>
             </section>
             <!---------- 最新課程 END ---------->
-            <section>
+            <section class="department">
                 <div class="container">
-                    <div class="co_slider"></div>
-                    <div class="relevant_slider"></div>
-                    <div class="government"></div>
+                    <div class="slider_wrap">
+                        <h3>合作單位</h3>
+                        <div class="slider">
+                            <div class="slider__item">
+                                <a href="" class="w-100 px-1 px-sm-2">
+                                    <div class="img_box">
+                                        <img src="https://fakeimg.pl/150x50/">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="slider__item">
+                                <a href="" class="w-100 px-1 px-sm-2">
+                                    <div class="img_box">
+                                        <img src="https://fakeimg.pl/150x50/">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="slider__item">
+                                <a href="" class="w-100 px-1 px-sm-2">
+                                    <div class="img_box">
+                                        <img src="https://fakeimg.pl/150x50/">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="slider__item">
+                                <a href="" class="w-100 px-1 px-sm-2">
+                                    <div class="img_box">
+                                        <img src="https://fakeimg.pl/150x50/">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="slider__item">
+                                <a href="" class="w-100 px-1 px-sm-2">
+                                    <div class="img_box">
+                                        <img src="https://fakeimg.pl/150x50/">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="slider__item">
+                                <a href="" class="w-100 px-1 px-sm-2">
+                                    <div class="img_box">
+                                        <img src="https://fakeimg.pl/150x50/">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="slider__item">
+                                <a href="" class="w-100 px-1 px-sm-2">
+                                    <div class="img_box">
+                                        <img src="https://fakeimg.pl/150x50/">
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -1512,7 +1564,7 @@
         $(function () {
 
 
-            // 服務項目
+            // ===== 服務項目 =====
             let serviceslider = $(".service .slider").slick({
                 // autoplay: true,
                 autoplaySpeed: 3000,
@@ -1524,7 +1576,7 @@
                 $(".service_shift_btns._m").addClass("-open")
             })
 
-            // 計數器
+            // ===== 計數器 =====
             let counterslider = $(".counter .slider").slick({
                 slidesToShow: 4,
                 responsive: [
@@ -1557,14 +1609,54 @@
                     },
                 ]
             })
-            // 快訊
+            
+            // ===== 快訊 =====
             let breakingNewsSlider = $(".breaking_news .slider").slick({
                 slidesToShow: 1,
                 vertical: true
             })
 
-            //  執行計畫
-            let planSliders = [];
+            // ===== 最新課程 =====
+            $('.slider__left').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                asNavFor: '.slider__right'
+            });
+            $('.slider__right').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                asNavFor: '.slider__left',
+                focusOnSelect: true
+            });
+            
+            // ===== 相關單位 / 合作單位 =====
+            $(".department .slider").slick({
+                slidesToShow: 6,
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 4,
+                        }
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 3,
+                            rows: 1
+                        }
+                    }
+                ]
+            })
+        })
+
+        // ===== 執行計畫 =====
+        $(function() {
+
+             let planSliders = [];
             // init 所有 slider (預設所有slider都顯示，避免slider出錯)
             
             setTimeout(() => {
@@ -1636,22 +1728,8 @@
             // }
             // $(window).resize(throttle(resizeSldier))
             
-            $('.slider__left').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: true,
-                fade: true,
-                asNavFor: '.slider__right'
-            });
-            $('.slider__right').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: false,
-                asNavFor: '.slider__left',
-                focusOnSelect: true
-            });
-        })
 
+        })
     </script>
 </body>
 
